@@ -9,15 +9,22 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'; 
+
+
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import HomeScreen from '../screens/Acceuil';
+import TabOneScreen from '../screens/Acceuil';
+import Utilisateur from '../screens/Utilisateur';
+import registerScreen from '../screens/Statistique';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import Statistique from '../screens/Statistique';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -58,16 +65,16 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Acceuil"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="Statistiques"
+        component={Statistique}
+        options={({ navigation }: RootTabScreenProps<'Statistiques'>) => ({
+          title: 'Statistiques',
+          tabBarIcon: ({ color }) => <Entypo name="line-graph" size = {24} color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -85,11 +92,19 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Acceuil"
+        component={HomeScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Acceuil',
+          tabBarIcon: ({ color }) => <Entypo name="home" size = {24} color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Utilisateur"
+        component={Utilisateur}
+        options={{
+          title: 'Utilisateur',
+          tabBarIcon: ({ color }) => <FontAwesome5 name="user" size={24} color={color} />,
         }}
       />
     </BottomTab.Navigator>

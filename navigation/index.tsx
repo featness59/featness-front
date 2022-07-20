@@ -21,10 +21,13 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/Acceuil';
 import TabOneScreen from '../screens/Acceuil';
 import Utilisateur from '../screens/Utilisateur';
-import registerScreen from '../screens/Statistique';
+import Stats from '../screens/Statistique';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Statistique from '../screens/Statistique';
+import Connexion from '../screens/Connexion';
+import Inscription from '../screens/Inscription';
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -47,6 +50,8 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Inscription" component={Inscription} />
+      <Stack.Screen name="Connexion" component={Connexion} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

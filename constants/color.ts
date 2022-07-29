@@ -6,6 +6,9 @@ export interface ColorValue {
     GREEN: string,
     RED: string,
     ORANGE: string,
+    pushup: string,
+    crunch: string,
+    sit: string,
 }
 
 export const Hue: ColorValue = {
@@ -16,4 +19,7 @@ export const Hue: ColorValue = {
     ORANGE: '#e79100',
     GRAY: '#c4c4c4c4',
     LIGHT_GRAY: '#e0e0e0',
+    pushup: '#43DBD2',
+    crunch: '#6A67FA',
+    sit: '#FF6CB3',
 }

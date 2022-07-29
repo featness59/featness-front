@@ -19,14 +19,15 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeScreen from '../screens/Acceuil';
-import TabOneScreen from '../screens/Acceuil';
 import Utilisateur from '../screens/Utilisateur';
-import Stats from '../screens/Statistique';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Statistique from '../screens/Statistique';
 import Connexion from '../screens/Connexion';
 import Inscription from '../screens/Inscription';
+import PushUp from '../screens/PushUpScreen';
+import Crunch from '../screens/CrunchScreen';
+import Squat from '../screens/SquatScreen';
 
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -52,8 +53,12 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="Inscription" component={Inscription} />
       <Stack.Screen name="Connexion" component={Connexion} />
+      
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Pushup" component={PushUp}/>
+        <Stack.Screen name="Squat" component={Squat}/>
+        <Stack.Screen name="Crunch" component={Crunch}/>
       </Stack.Group>
     </Stack.Navigator>
   );

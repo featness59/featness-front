@@ -36,6 +36,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       NotFound: '*',
       Inscription: 'inscription',
       Connexion: 'connexion',
+      Pushup: 'Pushup',
 
     },
   },

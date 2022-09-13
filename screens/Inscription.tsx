@@ -4,8 +4,16 @@ import * as React from 'react';
 import { SafeAreaView } from 'react-native';
 import { theme } from '../components/App.style';
 
+interface InscriptionProps {
+  navigation: any;
+}
 
-export default function Inscription() {
+
+export default function Inscription(props: InscriptionProps) {
+
+  const inscrire = () => props.navigation.navigate('Acceuil');
+
+
   return (
     <SafeAreaView style={styles.content}>
       <View style={styles.view}>
@@ -16,7 +24,7 @@ export default function Inscription() {
               <TextInput label="Email" keyboardType="email-address"></TextInput>
               <TextInput label="Password" secureTextEntry={true} right={<TextInput.Icon name="eye-off-outline" color={styles.icon.color}/>}/>
               <TextInput label="Confirm Password" secureTextEntry={true} right={<TextInput.Icon name="eye-off-outline" color={styles.icon.color}/>}/>
-              <Button mode="contained" style={styles.cardButton}>Inscrire</Button>
+              <Button mode="contained" style={styles.cardButton} onPress={inscrire}>Inscrire</Button>
           </Card.Content>
         </Card>
       </View>

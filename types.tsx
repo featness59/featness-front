@@ -22,6 +22,9 @@ export type RootStackParamList = {
   Pushup: undefined;
   Crunch: undefined;
   Squat: undefined;
+  Acceuil: undefined;
+  Statistiques: undefined;
+  Utilisateur: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

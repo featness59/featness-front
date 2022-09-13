@@ -18,12 +18,12 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Acceuil'>
         style={styles.pushup} />
       </View>
       <View style={styles.header}>
-        <Text style={[{fontWeight: 'bold', fontSize: RFValue(35)}, {textAlign: 'center', marginBottom: -45, top: 10}]}>Let's Count Your Reps </Text>
+        <Text style={[{fontWeight: 'bold', fontSize: RFValue(35)}, {textAlign: 'center', marginBottom: -45, top: 10}]}>Let's count your reps! </Text>
         <TouchableOpacity>
         <LetsStart
         title = "START"
         disabled={false}
-        onPress={() => navigation.navigate('Inscription')}
+        onPress={() => navigation.navigate('Utilisateur')}
       />
       </TouchableOpacity>
        {/* to be edited later */}

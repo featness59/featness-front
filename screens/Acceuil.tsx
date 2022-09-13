@@ -1,7 +1,5 @@
 import { Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import LetsStart from '../components/buttons';
-import createStyles from "../components/buttons/styles";
-import EditScreenInfo from '../components/EditScreenInfo';
+import LetsStart from '../components/buttons';;
 import { Text, View, } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import {RFValue} from "react-native-responsive-fontsize";

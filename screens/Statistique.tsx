@@ -102,10 +102,10 @@ export default function Statistique() {
               )) 
             }
           </View>
-          <FlatList
+          {/* <FlatList
             data={data}
             keyExtractor={(e, i) => i.toString()}
-          />
+          /> */}
         </View>
 
     </View>

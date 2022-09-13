@@ -1,31 +1,49 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native';
+import { Card, TextInput, Button } from 'react-native-paper'
+import { RootStackScreenProps } from '../types';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 
-export default function Connexion() {
+export default function Connexion({ navigation }: RootStackScreenProps<'Connexion'>) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Connexion</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {/* <EditScreenInfo path="/screens/TabTwoScreen.tsx" /> */}
-    </View>
+    <SafeAreaView style={styles.content}>
+      <View style={styles.view}>
+        <Card style={styles.card}>
+          <Card.Content>
+            <TextInput label="Email" keyboardType="email-address"></TextInput>
+            <TextInput label="Password" secureTextEntry={true}></TextInput>
+            <Button uppercase={false} style={styles.cardButton}>Forgot email/password</Button>
+            <Button mode="contained" style={styles.cardButton}>Login</Button>
+            <Button uppercase={true} style={styles.cardButton} onPress={() => navigation.navigate('Inscription')}>Register</Button>
+          </Card.Content>
+        </Card>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
+    display: "flex",
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "rgb(101,37,131)"
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  card : {
+    borderRadius: 20
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+
+  view: {
+    width: '80%'
   },
+
+  cardButton: {
+    margin: 2,
+    marginLeft: 0,
+    marginRight: 0
+  }
+
 });

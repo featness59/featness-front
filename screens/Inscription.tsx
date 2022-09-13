@@ -1,31 +1,51 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Card, TextInput, Button } from 'react-native-paper';
+import * as React from 'react';
+import { SafeAreaView } from 'react-native';
+import { theme } from '../components/App.style';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 
 export default function Inscription() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Inscription</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {/* <EditScreenInfo path="/screens/TabTwoScreen.tsx" /> */}
-    </View>
+    <SafeAreaView style={styles.content}>
+      <View style={styles.view}>
+        <Card style={styles.card}>
+        <Card.Content >
+              <TextInput label="Prénom" placeholder="Prénom"></TextInput>
+              <TextInput label="Nom" placeholder='Nom'></TextInput>
+              <TextInput label="Email" keyboardType="email-address"></TextInput>
+              <TextInput label="Password" secureTextEntry={true} right={<TextInput.Icon name="eye-off-outline" color={styles.icon.color}/>}/>
+              <TextInput label="Confirm Password" secureTextEntry={true} right={<TextInput.Icon name="eye-off-outline" color={styles.icon.color}/>}/>
+              <Button mode="contained" style={styles.cardButton}>Inscrire</Button>
+          </Card.Content>
+        </Card>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
+    display: 'flex',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: 'rgb(101,37,131)',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  card: {
+    borderRadius: 20
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  view: {
+    width: '80%'
   },
+  cardButton: {
+    margin: 15,
+    marginLeft: 0,
+    marginRight: 0
+  }, 
+  icon: {
+    color: theme.colors.primary
+  }
 });
+

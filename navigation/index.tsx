@@ -48,19 +48,17 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Connexion">
+    <Stack.Navigator initialRouteName='Connexion'>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Inscription" component={Inscription} options={{ headerShown: false }}/>
-      <Stack.Screen name="Connexion" component={Connexion} options={{ headerShown: false }}/>
-      <Stack.Screen name="Acceuil" component={HomeScreen} options={{ headerShown: false }}/>
-      <Stack.Screen name="Statistiques" component={Statistique} options={{ headerShown: false }} />
-      <Stack.Screen name="Utilisateur" component={Utilisateur} options={{ headerShown: false }}/>
-
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Inscription" component={Inscription} />
+      <Stack.Screen name="Connexion" component={Connexion} />
+      
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-        <Stack.Screen name="Pushup" component={PushUp} options={{ headerShown: false }}/>
-        <Stack.Screen name="Squat" component={Squat} options={{ headerShown: false }}/>
-        <Stack.Screen name="Crunch" component={Crunch} options={{ headerShown: false }}/>
+        <Stack.Screen name="Pushup" component={PushUp}/>
+        <Stack.Screen name="Squat" component={Squat}/>
+        <Stack.Screen name="Crunch" component={Crunch}/>
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -77,19 +75,24 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
+      initialRouteName="Acceuil"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
         name="Statistiques"
         component={Statistique}
-        options={{headerShown: false, 
-          tabBarIcon: ({ color }) => <Entypo name="line-graph" size = {24} color={color} />,} }
+        options={({ navigation }: RootTabScreenProps<'Statistiques'>) => ({
+          title: 'Statistiques', 
+          tabBarIcon: ({ color }) => <Entypo name="line-graph" size = {24} color={color} />,
+          headerShown: false,
+        })}
       />
       <BottomTab.Screen
         name="Acceuil"
         component={HomeScreen}
         options={{
+          title: 'Acceuil',
           headerShown: false,
           tabBarIcon: ({ color }) => <Entypo name="home" size = {24} color={color} />,
         }}
@@ -99,6 +102,7 @@ function BottomTabNavigator() {
         component={Utilisateur}
         options={{
           headerShown: false,
+          title: 'Utilisateur',
           tabBarIcon: ({ color }) => <FontAwesome5 name="user" size={24} color={color} />,
         }}
       />

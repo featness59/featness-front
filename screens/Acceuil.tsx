@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import LetsStart from '../components/buttons';;
 import { Text, View, } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -28,16 +28,6 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'Acceuil'>
       </TouchableOpacity>
        {/* to be edited later */}
 
-        <View style={[{flexDirection: 'row'}]}>
-          <View style={[{bottom: -170}, {flex:1}]}>
-            <Text style = {styles.notUnderlined}>Déjà inscrit ?</Text>
-          </View>
-          <View style={[{bottom: -170}, {flex:1}]}>
-            <Pressable onPress={() => navigation.navigate('Connexion')}>
-              <Text style = {styles.loginButton}>Se connecter</Text>
-          </Pressable>
-          </View>
-        </View>
       </View>
       {/* <EditScreenInfo path="/screens/TabOneScreen.tsx" /> */}
     </View>

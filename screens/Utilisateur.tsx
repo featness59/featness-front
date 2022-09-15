@@ -21,7 +21,6 @@ export default function Utilisateur({ navigation }: RootTabScreenProps<'Utilisat
         style={styles.user} />
         </View>
         <Text style={[styles.text]}> Salut, {userName} ! </Text>
-        <View style={styles.separator} lightColor="black" darkColor="rgba(255,255,255,0.1)" />
       </View>
       <View style={styles.header}>
         <Text style={styles.title}>Exercices</Text>

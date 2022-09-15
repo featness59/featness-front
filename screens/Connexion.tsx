@@ -8,21 +8,41 @@ import { LinearGradient } from 'expo-linear-gradient';
 interface ConnexionProps {
   navigation: any;
 }
+export let token = '';
+export let userName = '';
 
 export default function Connexion(props: ConnexionProps) {
 
   // const login = () => props.navigation.navigate('Acceuil');
-  const login = (values: any) => {
+  const login = async (values: any) => {
     let data = JSON.stringify(values)
-    fetch('http://localhost:8000/login/login', {
-      method: 'POST',
-      body: data}).then((response) => {
-        console.log('response:', response);
-        if (response.status === 200) {
-          props.navigation.navigate('Root');
-        }
+    let url = 'https://featnessapi.herokuapp.com/login/login'
+    try {
+      let res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: data
       });
+      let response = await res.json();
+      
+    
+      
+      if (res.status === 200) {
+        props.navigation.navigate('Root');
+        token = response.access_token;
+        userName = response.user;
+      }
+    }
+    catch (error) {
+      console.error(error);
+      
+    }
   };
+
+
   const register = () => props.navigation.navigate('Inscription');
   // const register = () => props.navigation.navigate('Root');
 
@@ -34,7 +54,7 @@ export default function Connexion(props: ConnexionProps) {
           <Card.Title title="Connexion" titleStyle={styles.cardTitle} />
           <Card.Content>
             <Formik
-                initialValues={{email: "", password: ""}}
+                initialValues={{email: "", hashed_password: ""}}
                 onSubmit={login}
                 validationSchema={loginForm}>
                 {({ handleSubmit, handleChange, errors, setFieldTouched, touched, values }) => (
@@ -54,12 +74,12 @@ export default function Connexion(props: ConnexionProps) {
                     <TextInput 
                       label="Password" 
                       secureTextEntry={true} 
-                      onChangeText={handleChange('password')}
-                      onFocus={() => setFieldTouched('password')}/>
+                      onChangeText={handleChange('hashed_password')}
+                      onFocus={() => setFieldTouched('hashed_password')}/>
                     {
-                      touched.password && errors.password ? 
+                      touched.hashed_password && errors.hashed_password ? 
                       <Text style={{color: 'red', fontSize: 11}}>
-                        {errors.password} 
+                        {errors.hashed_password} 
                       </Text> 
                       : null
                     }

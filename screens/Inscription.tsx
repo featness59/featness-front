@@ -15,15 +15,32 @@ export default function Inscription(props: InscriptionProps) {
 
   const inscrire = (values: any) => {
     let data = JSON.stringify(values)
-    fetch('http://localhost:8000/users/', {
-      method: 'POST',
-      body: data}).then((response) => {
-        console.log('response:', response);
-        if (response.status === 201) {
-          props.navigation.navigate('Root');
-        }
+    let obj = JSON.parse(data);
+    console.log(obj.email);
+    let url = 'https://featnessapi.herokuapp.com/users/'
+    if (obj.hashed_password === obj.conf_pass) {
+      try {
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: data
+        }).then((response) => {
+          if (response.status === 201) {
+            props.navigation.navigate('Connexion');
+            console.log(data);
+          }
+        });
       }
-    );
+      catch (err) {
+        console.error(err);
+      }
+    }
+    else {
+      alert('Les mots de passe ne correspondent pas');
+    }
   };
   const connexion = () => props.navigation.navigate('Connexion');
 
@@ -35,10 +52,10 @@ export default function Inscription(props: InscriptionProps) {
         <Card.Content >
             <Formik
                 initialValues={{
-                  prénom: "",
-                  nom: "",
+                  first_name: "",
+                  name: "",
                   email: "",
-                  password: "",
+                  hashed_password: "",
                   conf_pass: "",
                 }}
                 onSubmit={inscrire}
@@ -48,23 +65,23 @@ export default function Inscription(props: InscriptionProps) {
                     <TextInput 
                       label="Prénom" 
                       placeholder="Prénom"
-                      onChangeText={handleChange('prénom')}
-                      onFocus={() => setFieldTouched('prénom')}/>
+                      onChangeText={handleChange('first_name')}
+                      onFocus={() => setFieldTouched('first_name')}/>
                       {
-                        touched.prénom ?
+                        touched.first_name ?
                         <Text style={{color: 'red', fontSize: 11}}>
-                          {errors.prénom}
+                          {errors.first_name}
                         </Text> : null
                       }
                     <TextInput 
                       label="Nom" 
                       placeholder='Nom'
-                      onChangeText={handleChange('nom')}
-                      onFocus={() => setFieldTouched('nom')}/>
+                      onChangeText={handleChange('name')}
+                      onFocus={() => setFieldTouched('name')}/>
                       {
-                        touched.prénom ?
+                        touched.name ?
                         <Text style={{color: 'red', fontSize: 11}}>
-                          {errors.nom}
+                          {errors.name}
                         </Text> : null
                       }
                     <TextInput 
@@ -86,12 +103,12 @@ export default function Inscription(props: InscriptionProps) {
                       right={<TextInput.Icon 
                               name="eye-off-outline" 
                               color={styles.icon.color}/>}
-                      onChangeText={handleChange('password')}
-                      onFocus={() => setFieldTouched('password')}/>
+                      onChangeText={handleChange('hashed_password')}
+                      onFocus={() => setFieldTouched('hashed_password')}/>
                     {
-                      touched.password && errors.password ? 
+                      touched.hashed_password && errors.hashed_password ? 
                       <Text style={{color: 'red', fontSize: 11}}>
-                        {errors.password} 
+                        {errors.hashed_password} 
                       </Text> 
                       : null
                     }
@@ -105,9 +122,9 @@ export default function Inscription(props: InscriptionProps) {
                       onChangeText={handleChange('conf_pass')}
                       onFocus={() => setFieldTouched('conf_pass')}/>
                     {
-                      touched.password && errors.password ? 
+                      touched.conf_pass && errors.conf_pass ? 
                       <Text style={{color: 'red', fontSize: 11}}>
-                        {errors.password} 
+                        {errors.conf_pass} 
                       </Text> 
                       : null
                     }
@@ -117,7 +134,7 @@ export default function Inscription(props: InscriptionProps) {
                       style={styles.cardButton} 
                       onPress={handleSubmit}
                       disabled={
-                        values.prénom == '' || values.nom == '' || values.email == '' || values.password == '' || values.conf_pass == '' || errors.prénom || errors.nom || errors.email || errors.password || errors.conf_pass ? true : false}>
+                        values.first_name == '' || values.name == '' || values.email == '' || values.hashed_password == '' || values.conf_pass == '' ? true : false}>
                         Inscrire
                     </Button>
                   </>

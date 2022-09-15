@@ -15,9 +15,12 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@mediapipe/camera_utils": "^0.3.1640029074",
+    "@mediapipe/pose": "^0.5.1635988162",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
+    "axios": "^0.27.2",
     "expo": "~45.0.0",
     "expo-asset": "~8.5.0",
     "expo-constants": "~13.1.1",
@@ -32,6 +35,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-camera": "^4.2.1",
     "react-native-chart-kit": "^6.12.0",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-paper": "^4.12.4",
@@ -52,5 +56,4 @@
     "typescript": "~4.3.5"
   },
   "private": true
-  
 }

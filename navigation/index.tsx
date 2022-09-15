@@ -51,12 +51,12 @@ function RootNavigator() {
     <Stack.Navigator initialRouteName='Connexion'>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Screen name="Inscription" component={Inscription} />
-      <Stack.Screen name="Connexion" component={Connexion} />
+      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown: false}}/>
+      <Stack.Screen name="Connexion" component={Connexion} options={{headerShown: false}}/>
       
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-        <Stack.Screen name="Pushup" component={PushUp}/>
+        <Stack.Screen name="Pushup" component={PushUp} options={{ headerShown: false }}/>
         <Stack.Screen name="Squat" component={Squat}/>
         <Stack.Screen name="Crunch" component={Crunch}/>
       </Stack.Group>
